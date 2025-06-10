@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PANDA.GG</title>
+<link rel="icon" href="Logo.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+
+*, *::before, *::after, button, a {
+  box-sizing: border-box;
+   cursor: none !important;
+}
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff, #999999);
+  pointer-events: none;
+  z-index: 9999;
+  box-shadow: 0 0 8px #fff, 0 0 15px #aaa;
+  transform: translate(-50%, -50%);
+}
+
+:root {
+  --bg: #000;
+  --text: #eee;
+  --primary: #fff;
+  --accent: #444;
+  --glass: rgba(255, 255, 255, 0.05);
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 280px;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  padding: 3rem 2rem;
+  border-right: 1px solid var(--accent);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: fixed;
+  height: 100vh;
+  z-index: 10;
+}
+
+.sidebar h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  color: var(--primary);
+  text-shadow: 0 0 10px var(--primary);
+}
+
+.sidebar a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: var(--primary);
+  text-shadow: 0 0 10px var(--primary);
+  transform: translateX(6px);
+}
+
+.content {
+  margin-left: 280px;
+  padding: 4rem 3rem;
+  width: 100%;
+}
+
+
+.hero-img-wrapper {
+  flex: 0 0 auto;
+  width: 420px;
+  margin-left: 40px;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  max-width: 100vw;
+  padding-left: 0;
+  margin-left: 0;
+  overflow: visible;
+}
+
+.hero img {
+  max-width: 450px;
+  width: 100%;
+  border-radius: 30px;
+  border: 4px solid #fff2;
+  box-shadow: 0 0 40px #fff9, inset 0 0 20px #fff3;
+  cursor: pointer;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  margin-left: 60px;
+  cursor: pointer;
+}
+
+.hero img:hover {
+  transform: scale(1.07) rotate(2deg);
+  box-shadow: 0 0 50px #fff, inset 0 0 30px #fff;
+}
+
+
+
+
+.hero-text {
+  flex: 1;
+  max-width: 600px;
+}
+
+
+.hero-text h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  color: var(--primary);
+  text-shadow: 0 0 20px var(--primary);
+  margin-bottom: 1rem;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  color: #bbb;
+  line-height: 1.7;
+}
+
+.buttons {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1.5rem;
+}
+
+button, .discord {
+  background: var(--primary);
+  color: #000;
+  padding: 1rem 2.2rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  text-decoration: none;
+  box-shadow: 0 0 14px #fff4;
+  transition: 0.3s ease all;
+  min-width: 160px;
+  text-align: center;
+}
+
+button:hover, .discord:hover {
+  background: #111;
+  cursor: pointer;
+  color: var(--primary);
+  box-shadow: 0 0 30px var(--primary);
+  transform: scale(1.05);
+}
+
+.section {
+  margin-top: 5rem;
+  background: var(--glass);
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 0 15px #fff2;
+}
+
+.section h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.5rem;
+  text-align: center;
+  color: var(--primary);
+  margin-bottom: 2rem;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 1rem 2rem;
+  background: #111;
+  color: var(--primary);
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 10px #fff2;
+}
+
+.tab:hover, .tab.active {
+  background: var(--primary);
+  color: #000;
+  box-shadow: 0 0 30px var(--primary);
+  transform: scale(1.05);
+}
+
+.tab-content {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.3rem;
+  color: #ccc;
+  line-height: 1.7;
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: #777;
+  margin-top: 4rem;
+  font-size: 0.9rem;
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+
+
+<div class="container">
+  <div class="sidebar">
+    <h1>PANDA.GG</h1>
+    <a href="index.html">Home</a>
+    <a href="https://gofile.io/d/eJX3Wp">Download</a>
+    <a href="https://discord.gg/Desxr79G92">Discord</a>
+  </div>
+
+  <div class="content">
+    <div class="hero">
+      <img src="Exec.png" class="hero-img" alt="Ace Executor" />
+      <div class="hero-text">
+        <h2>Power Meets Simplicity</h2>
+        <p>Panda Executor brings speed, precision and a no-frills UI designed for pure execution power. No distractions — just clean, modern tools built for you.</p>
+        <div class="buttons">
+          <a href="https://gofile.io/d/eJX3Wp"><button>Download Now</button></a>
+          <a href="https://discord.gg/Desxr79G92" target="_blastore9.gofile.io/download/web/771877e6-5d26-43e0-9520-2b8a1874d470/Panda.rarnk" class="discord">Join Discord</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Why Panda?</h2>
+      <div class="tabs">
+        <div class="tab active" data-tab="t1">Speed</div>
+        <div class="tab" data-tab="t2">Compatibility</div>
+        <div class="tab" data-tab="t3">Design</div>
+        <div class="tab" data-tab="t4">Support</div>
+      </div>
+      <div id="t1" class="tab-content active">Lightning-fast script execution to keep you ahead of the curve.</div>
+      <div id="t2" class="tab-content">Supports a wide range of popular scripts with maximum stability.</div>
+      <div id="t3" class="tab-content">Minimalistic black/white design with beautiful focus-centric styling.</div>
+      <div id="t4" class="tab-content">Dedicated support, active updates, and a growing community.</div>
+    </div>
+
+    <footer>&copy; Credits: Random69</footer>
+  </div>
+</div>
+
+<script>
+const tabs = document.querySelectorAll('.tab')
+const contents = document.querySelectorAll('.tab-content')
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'))
+    contents.forEach(c => c.classList.remove('active'))
+    tab.classList.add('active')
+    document.getElementById(tab.dataset.tab).classList.add('active')
+  })
+})
+const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = `${e.clientX}px`;
+    cursor.style.top = `${e.clientY}px`;
+  });
+</script>
+</body>
+</html>
